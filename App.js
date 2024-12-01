@@ -5,19 +5,16 @@ import barrierIcon from "./icons/barrier.png";
 import performanceIcon from "./icons/performance.png";
 import prototypeIcon from "./icons/prototype.png";
 import wrenchIcon from "./icons/wrench.png";
-// import TestComponent from "./components/TestComponent";
+import TestComponent from "./components/testComponent";
 
 const App = () => {
-  // const TestComponent = () => {
-  //   return (
-  //     <View style={styles.page}>
-  //       <Text style={styles.text}>Welcome to Home!</Text>
-  //     </View>
-  //   );
-  // };
-
   // Icons, list of icons import URL, label is the name of the nav element, color is the color of the label
   // Add function to onPress
+  // Should create a function that does the alert to show case function
+  const alert = () => {
+    Alert.alert("Home Clicked");
+  };
+
   const navbarItems = [
     {
       icons: [
@@ -28,7 +25,7 @@ const App = () => {
       ],
       label: "Home",
       color: "#FF9800",
-      onPress: () => Alert.alert("Home Clicked"),
+      onPress: () => alert(),
     },
     {
       icons: [{ source: performanceIcon }, { source: barrierIcon }],
