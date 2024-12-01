@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Alert, Text } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import Navbar from "./components/Navbar";
 import barrierIcon from "./icons/barrier.png";
 import performanceIcon from "./icons/performance.png";

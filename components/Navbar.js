@@ -27,6 +27,7 @@ const Navbar = ({ items }) => {
           </TouchableOpacity>
         ))}
       </View>
+
       {/* <View style={styles.contentContainer}>
         {activeComponent ? (
           React.createElement(activeComponent)
