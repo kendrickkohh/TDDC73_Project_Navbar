@@ -1,18 +1,39 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { Image, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const CustomNavBar = ({ routes, onRouteChange }) => {
+const Navbar = ({ items }) => {
+  const [activeComponent, setActiveComponent] = useState(null);
+
   return (
-    <View style={styles.navbar}>
-      {routes.map((route, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.navItem}
-          onPress={() => onRouteChange(route.name)}
-        >
-          <Text style={styles.navText}>{route.label}</Text>
-        </TouchableOpacity>
-      ))}
+    <View>
+      <View style={[styles.navbar]}>
+        {items.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.navItem}
+            onPress={() => {
+              setActiveComponent(item.component || null);
+              if (item.onPress) item.onPress();
+            }}
+          >
+            <View style={styles.iconsContainer}>
+              {item.icons.map((icon, idx) => (
+                <Image key={idx} source={icon.source} style={styles.icon} />
+              ))}
+            </View>
+            <Text style={[styles.navText, { color: item.color || "black" }]}>
+              {item.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      {/* <View style={styles.contentContainer}>
+        {activeComponent ? (
+          <activeComponent />
+        ) : (
+          <Text>Welcome! Select a menu item.</Text>
+        )}
+      </View> */}
     </View>
   );
 };
@@ -22,16 +43,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    backgroundColor: "#D3D3D3",
     height: 60,
-    backgroundColor: "#333",
+    borderTopWidth: 1,
+    borderTopColor: "black",
   },
   navItem: {
-    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  iconsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  icon: {
+    marginHorizontal: 2, // Space between icons
+    width: 20,
+    height: 20,
   },
   navText: {
-    color: "#fff",
-    fontSize: 16,
+    marginTop: 4,
+    fontSize: 12,
   },
 });
 
-export default CustomNavBar;
+export default Navbar;

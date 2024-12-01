@@ -1,29 +1,44 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Navbar from "./components/Navbar.js";
+import React from "react";
+import { View, StyleSheet, Alert } from "react-native";
+import Navbar from "./components/Navbar";
+import barrierIcon from "./icons/barrier.png";
+import performanceIcon from "./icons/performance.png";
+import prototypeIcon from "./icons/prototype.png";
+import wrenchIcon from "./icons/wrench.png";
+import testComponent from "./components/testComponent";
 
 const App = () => {
-  const [currentRoute, setCurrentRoute] = useState("Home");
-
-  const routes = [
-    { name: "Home", label: "Home" },
-    { name: "Profile", label: "Profile" },
-    { name: "Settings", label: "Settings" },
+  // Icons, list of icons import URL, label is the name of the nav element, color is the color of the label
+  // Add function to onPress
+  const navbarItems = [
+    {
+      icons: [
+        { source: barrierIcon },
+        { source: performanceIcon },
+        { source: wrenchIcon },
+        { source: prototypeIcon },
+      ],
+      label: "Home",
+      color: "#FF9800",
+      onPress: () => Alert.alert("Home Clicked"),
+    },
+    {
+      icons: [{ source: performanceIcon }, { source: barrierIcon }],
+      label: "Search",
+      color: "#FF5722",
+      onPress: () => console.log("Search Clicked"),
+    },
+    {
+      icons: [{ source: prototypeIcon }, { source: performanceIcon }],
+      label: "Settings",
+      color: "#2196F3",
+      component: testComponent,
+    },
   ];
-
-  const renderContent = () => {
-    const current = routes.find((route) => route.name === currentRoute);
-    return (
-      <Text style={styles.pageContent}>
-        {current ? current.name : "Page not found."}
-      </Text>
-    );
-  };
 
   return (
     <View style={styles.container}>
-      {renderContent()}
-      <Navbar routes={routes} onRouteChange={setCurrentRoute} />
+      <Navbar items={navbarItems} />
     </View>
   );
 };
@@ -31,12 +46,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-  },
-  pageContent: {
-    textAlign: "center",
-    fontSize: 20,
-    margin: 20,
+    justifyContent: "flex-end",
   },
 });
 
