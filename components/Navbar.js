@@ -29,7 +29,7 @@ const Navbar = ({ items }) => {
       </View>
       {/* <View style={styles.contentContainer}>
         {activeComponent ? (
-          <activeComponent />
+          React.createElement(activeComponent)
         ) : (
           <Text>Welcome! Select a menu item.</Text>
         )}
