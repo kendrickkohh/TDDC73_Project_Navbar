@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const Navbar = ({ items }) => {
-  const [activeComponent, setActiveComponent] = useState(null);
-
+const Navbar = ({ items, setActiveComponent }) => {
   return (
     <View>
       <View style={[styles.navbar]}>
@@ -12,7 +10,7 @@ const Navbar = ({ items }) => {
             key={index}
             style={styles.navItem}
             onPress={() => {
-              setActiveComponent(item.component || null);
+              setActiveComponent(() => item.component || null);
               if (item.onPress) item.onPress();
             }}
           >
@@ -27,14 +25,6 @@ const Navbar = ({ items }) => {
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* <View style={styles.contentContainer}>
-        {activeComponent ? (
-          React.createElement(activeComponent)
-        ) : (
-          <Text>Welcome! Select a menu item.</Text>
-        )}
-      </View> */}
     </View>
   );
 };
