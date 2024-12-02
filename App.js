@@ -6,8 +6,10 @@ import performanceIcon from "./icons/performance.png";
 import prototypeIcon from "./icons/prototype.png";
 import wrenchIcon from "./icons/wrench.png";
 import HomePage from "./components/HomePage";
+import SearchPage from "./components/SearchPage";
 
 const App = () => {
+  // Used for displaying the active page
   const [activeComponent, setActiveComponent] = useState(null);
 
   //Check if index 0 element has a component and if it does display it
@@ -24,7 +26,9 @@ const App = () => {
     Alert.alert("Settings Clicked");
   };
 
-  // icons: List of icons import URL
+  // navbarItems is the list of items a user inputs
+  // they can change the items and the navbar/screens, will change dynamically
+  // icons: List of icons to be shown, a user can set more than 1 icon (uncomment icons to see)
   // label: Header of the nav element
   // color: Color of the label
   // onPress: Function that can be passed when the button is pressed
@@ -49,6 +53,7 @@ const App = () => {
       label: "Search",
       color: "#FF5722",
       onPress: () => console.log("Search Clicked"),
+      component: SearchPage,
     },
     {
       icons: [

@@ -5,20 +5,24 @@ const Navbar = ({ items, setActiveComponent }) => {
   return (
     <View>
       <View style={[styles.navbar]}>
+        {/* Loop through items to display navbar elements */}
         {items.map((item, index) => (
           <TouchableOpacity
             key={index}
             style={styles.navItem}
+            // Sets setActiveComponent() to new component/null if pressed and calls onPress()
             onPress={() => {
               setActiveComponent(() => item.component || null);
               if (item.onPress) item.onPress();
             }}
           >
+            {/* Icons */}
             <View style={styles.iconsContainer}>
               {item.icons.map((icon, idx) => (
                 <Image key={idx} source={icon.source} style={styles.icon} />
               ))}
             </View>
+            {/* Label */}
             <Text style={[styles.navText, { color: item.color || "black" }]}>
               {item.label}
             </Text>
